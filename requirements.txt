@@ -1,0 +1,9 @@
+torch>=1.10
+torchvision
+opencv-python
+numpy
+matplotlib
+PyYAML
+tqdm
+pillow
+yolov5 @ git+https://github.com/ultralytics/yolov5.git
