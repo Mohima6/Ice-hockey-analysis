@@ -2,8 +2,6 @@ import cv2
 import torch
 import numpy as np
 import os
-
-# Load YOLOv5 pretrained model from torch hub
 print("Loading YOLOv5 model...")
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 model.conf = 0.4  # Confidence threshold
@@ -49,13 +47,11 @@ def process_video(video_path, output_path='output.mp4'):
     width  = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps    = cap.get(cv2.CAP_PROP_FPS)
-
-    # Use mp4v codec for mp4 output
     out = cv2.VideoWriter(output_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (width, height))
 
     print("Processing video... Press 'q' to quit.")
 
-    cv2.namedWindow("Processed Frame", cv2.WINDOW_NORMAL)  # Optional: resizable window
+    cv2.namedWindow("Processed Frame", cv2.WINDOW_NORMAL)  
 
     while cap.isOpened():
         ret, frame = cap.read()
@@ -71,7 +67,7 @@ def process_video(video_path, output_path='output.mp4'):
         out.write(overlayed)
         cv2.imshow("Processed Frame", overlayed)
 
-        if cv2.waitKey(30) & 0xFF == ord('q'):  # 30ms delay to see frames clearly
+        if cv2.waitKey(30) & 0xFF == ord('q'):  # 30ms delay 
             break
 
     cap.release()
@@ -82,3 +78,4 @@ def process_video(video_path, output_path='output.mp4'):
 if __name__ == "__main__":
     video_path = os.path.join(os.path.dirname(__file__), "icehockey.mp4")
     process_video(video_path, output_path='output.mp4')
+
